@@ -1,1 +1,9 @@
-<p>{{ this.stock}} </p>
+<form [formGroup]="stocksForm">
+    <label for="">Digite sua</label>
+    <input type="text" formControlName="stockName">
+    <input type="submit" (click)="getStock()">
+
+    <p>
+        {{this.stocksForm.controls.stockName.value}}
+    </p>
+</form>

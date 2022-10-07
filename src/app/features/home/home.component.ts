@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { StocksService } from 'src/app/core/services/stocks.service';
 
 @Component({
@@ -11,16 +12,26 @@ export class HomeComponent implements OnInit {
   constructor(public stocksService: StocksService) { }
 
   public stock: any;
+  
 
   ngOnInit(): void {
-    this.getOneStock();
+    this.stocksForm;
   }
 
-  public getOneStock() {
-    return this.stocksService.getOne().subscribe((value: any) => {
+
+  public getOneStock(stock: any) {
+     this.stocksService.getOne(stock).subscribe((value: any) => {
        this.stock = value;
-       debugger
     });
+  }
+
+  public stocksForm = new FormGroup({
+    stockName: new FormControl('')
+  });
+
+  public getStock() {
+    this.getOneStock(this.stocksForm.controls.stockName.value)
+    console.log(this.stock);
   }
 
 }

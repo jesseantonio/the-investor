@@ -12,8 +12,8 @@ export class StocksService {
   private baseUrl = `${environment.baseUrl}`
 
 
-  public getOne() {
-    return this.http.get<any>(`${this.baseUrl}/VALE3/20200101/20220101/`);
+  public getOne(stock: any, startDate?: any, endDate?: any) {
+    return this.http.get<any>(`${this.baseUrl}/${stock}/20200101/20220101/`);
   }
   
 }
